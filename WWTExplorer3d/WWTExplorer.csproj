@@ -167,10 +167,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DSMRender, Version=5.2.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\DSMRender.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files (x86)\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.Types.dll</HintPath>
@@ -2415,9 +2411,6 @@
     <None Include="Resources\earthMapNight.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DSMRender.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\point.png" />
     <None Include="Resources\target1.png" />
     <None Include="Resources\target2.png" />
@@ -2473,6 +2466,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DSMRender\DSMRender.csproj">
+      <Project>{8eeabfaa-b3cb-4da3-b6c7-6b28d35e85a6}</Project>
+      <Name>DSMRender</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OculusWrap\OculusWrap.csproj">
       <Project>{737a81a8-553c-49a9-8f17-5adf691a56b2}</Project>
       <Name>OculusWrap</Name>
@@ -2490,12 +2487,10 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
     <Error Condition="!Exists('..\packages\SharpDX.2.6.3\build\SharpDX.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SharpDX.2.6.3\build\SharpDX.targets'))" />
     <Error Condition="!Exists('..\packages\SharpDX.Toolkit.2.6.3\build\SharpDX.Toolkit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SharpDX.Toolkit.2.6.3\build\SharpDX.Toolkit.targets'))" />
   </Target>
